@@ -51,6 +51,7 @@ export default function SiteHeader() {
           <Link
             href="/"
             aria-label="ASTA Biochemicals home"
+            className="asta-logo"
             style={{ flexShrink: 0, display: "flex", alignItems: "center" }}
           >
             <Image

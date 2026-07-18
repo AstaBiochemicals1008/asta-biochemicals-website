@@ -304,6 +304,13 @@ p.asta-hero-rise-3 {
 .asta-burger {
   display: none;
 }
+/* Centre the logo in the whitespace between the left edge and the nav: a third
+   auto margin (nav + Connect already have one) splits the free space evenly, so
+   the logo gets equal space on each side. Reset on mobile, where the nav is
+   hidden and the logo should sit left with the burger at right. */
+.asta-logo {
+  margin-left: auto;
+}
 @media (max-width: 1240px) {
   .asta-nav,
   .asta-search {
@@ -311,6 +318,9 @@ p.asta-hero-rise-3 {
   }
   .asta-burger {
     display: inline-flex !important;
+  }
+  .asta-logo {
+    margin-left: 0;
   }
 }
 
