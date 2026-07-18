@@ -35,9 +35,11 @@ const linkStyle: React.CSSProperties = {
 function CardHead({
   icon,
   title,
+  subtitle,
 }: {
   icon: React.ReactNode;
   title: string;
+  subtitle?: string;
 }) {
   return (
     <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
@@ -65,6 +67,19 @@ function CardHead({
         }}
       >
         {title}
+        {subtitle && (
+          <span
+            style={{
+              display: "block",
+              fontSize: 12.5,
+              fontWeight: 500,
+              color: "var(--green-700)",
+              marginTop: 2,
+            }}
+          >
+            {subtitle}
+          </span>
+        )}
       </div>
     </div>
   );
@@ -119,7 +134,11 @@ export default function GetInTouch() {
             data-reveal-delay="0"
             style={cardStyle}
           >
-            <CardHead icon={<MapPin style={iconStyle} />} title="Address" />
+            <CardHead
+              icon={<MapPin style={iconStyle} />}
+              title="Corporate Office"
+              subtitle="(R&D - Centre of Excellence)"
+            />
             <div style={bodyStyle}>
               <strong
                 style={{
