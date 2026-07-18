@@ -132,7 +132,7 @@ export default function GetInTouch() {
               >
                 ASTA BIOCHEMICALS PVT. LTD.
               </strong>
-              B-326/1, 1st Floor, 3rd Main, 10th Cross,
+              B-326/1, 3rd Main, 10th Cross,
               <br />
               Near TVS Cross, 1st Stage, 1st Phase,
               <br />
