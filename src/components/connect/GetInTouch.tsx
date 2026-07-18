@@ -98,9 +98,9 @@ export default function GetInTouch() {
               margin: "14px 0 0",
             }}
           />
-          {/* `whiteSpace: nowrap` is the prototype's — the line is meant to hold
-              on one row and is clipped by the body's `overflow-x: clip`. */}
-          <p style={{ maxWidth: "none", whiteSpace: "nowrap", margin: "20px 0 0" }}>
+          {/* Prototype holds this on one row (nowrap) on wide screens; it must
+              wrap on mobile or it overflows the viewport (see .asta-cn-intro). */}
+          <p className="asta-cn-intro" style={{ maxWidth: "none", margin: "20px 0 0" }}>
             Reach out to us for product inquiries, technical guidance,
             partnerships or any other information.
           </p>

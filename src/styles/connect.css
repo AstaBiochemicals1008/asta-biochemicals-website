@@ -154,6 +154,17 @@ p.asta-cn-rise-4 {
   }
 }
 
+/* Intro line: one row on wide screens (prototype intent), wraps on narrow
+   screens so it never overflows the viewport. */
+.asta-cn-intro {
+  white-space: nowrap;
+}
+@media (max-width: 820px) {
+  .asta-cn-intro {
+    white-space: normal;
+  }
+}
+
 /* ---- FIND US: map + live "Our Location" panel -------------
    The panel was previously baked into connect-location.png; rebuilt as live
    text so the address stays editable. Map is the cropped connect-map.png. */

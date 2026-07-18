@@ -7,7 +7,7 @@ import WhyChoose from "@/components/solutions/WhyChoose";
 import Process from "@/components/solutions/Process";
 
 export const metadata: Metadata = {
-  title: "Solutions — ASTA Biochemicals",
+  title: "Solutions",
   description:
     "ASTA combines advanced chemistry, robust manufacturing and global supply expertise across biopharmaceutical products, fragrance and personal care ingredients, discovery chemistry, global supply and quality compliance.",
 };

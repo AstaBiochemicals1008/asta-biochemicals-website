@@ -354,6 +354,11 @@ body.asta-armed .asta-co-root .asta-reveal.asta-co-jline.is-in {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
 }
+/* Grid items default to min-width:auto and refuse to shrink below their
+   content, overflowing the track on narrow screens. Let them shrink. */
+.asta-co-vs-grid > * {
+  min-width: 0;
+}
 
 /* As with the VM cards, the hover lift loses to `.asta-reveal.is-in`; the
    border and shadow still render. */
