@@ -154,6 +154,133 @@ p.asta-cn-rise-4 {
   }
 }
 
+/* ---- FIND US: map + live "Our Location" panel -------------
+   The panel was previously baked into connect-location.png; rebuilt as live
+   text so the address stays editable. Map is the cropped connect-map.png. */
+.asta-cn-map-card {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr;
+  max-width: 1040px;
+  margin: 0 auto;
+  border: 1px solid var(--gray-200);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 14px 40px rgba(17, 48, 43, 0.08);
+  background: #fafbf8;
+}
+.asta-cn-map-media {
+  position: relative;
+  display: block;
+  min-height: 340px;
+}
+.asta-cn-loc-panel {
+  background: #fafbf8;
+  padding: clamp(24px, 2.4vw, 38px);
+  display: flex;
+  flex-direction: column;
+}
+.asta-cn-loc-pin {
+  flex-shrink: 0;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: #eef2e1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+/* h3/h4 carry global !important type; override to match the original panel. */
+.asta-cn-loc-title {
+  font-size: 25px !important;
+  font-weight: 700 !important;
+  color: #1d3d2a !important;
+  margin: 0 !important;
+  line-height: 1.15 !important;
+}
+.asta-cn-loc-rule {
+  display: block;
+  width: 42px;
+  height: 3px;
+  border-radius: 2px;
+  background: #9cb84e;
+  margin: 10px 0 0;
+}
+.asta-cn-loc-addr {
+  font-style: normal;
+  font-size: 16px;
+  line-height: 1.75;
+  color: #333d39;
+  margin: 26px 0 0;
+}
+.asta-cn-loc-btn {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin: 26px 0 0;
+  padding: 14px 26px;
+  border-radius: 10px;
+  background: #6f9221;
+  color: #fff;
+  font-weight: 700;
+  font-size: 16px;
+  text-decoration: none;
+  box-shadow: 0 6px 16px rgba(111, 146, 33, 0.28);
+}
+.asta-cn-loc-divider {
+  height: 1px;
+  background: var(--gray-200);
+  margin: 30px 0 24px;
+}
+.asta-cn-nearby-title {
+  font-size: 18px !important;
+  font-weight: 700 !important;
+  color: #5f8a1e !important;
+  margin: 0 0 18px !important;
+}
+.asta-cn-lm-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.asta-cn-lm {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.asta-cn-lm-ico {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #eef2e1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.asta-cn-lm-name {
+  font-size: 15px;
+  font-weight: 600;
+  color: #28302e;
+  line-height: 1.3;
+}
+.asta-cn-lm-dist {
+  font-size: 13px;
+  color: var(--gray-500);
+  margin-top: 2px;
+}
+@media (max-width: 860px) {
+  .asta-cn-map-card {
+    grid-template-columns: 1fr;
+  }
+  .asta-cn-map-media {
+    min-height: 300px;
+  }
+}
+
 /* ---- REDUCED MOTION --------------------------------------- */
 @media (prefers-reduced-motion: reduce) {
   .asta-cn-hero-float {
