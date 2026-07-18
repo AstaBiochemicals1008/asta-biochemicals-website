@@ -4,7 +4,7 @@ export default function Hero() {
   return (
     <section
       id="top"
-      className="asta-hero-pan"
+      className="asta-hero-pan asta-home-hero"
       style={{
         position: "relative",
         overflow: "hidden",
@@ -154,8 +154,12 @@ export default function Hero() {
           />
         </div>
 
+        {/* Reserves the video area in the 2-col desktop layout. Hidden once the
+            grid collapses to 1 col (≤900px) so it doesn't add dead height and
+            push the hero past the viewport on mobile. */}
         <div
           aria-hidden="true"
+          className="asta-hero-spacer"
           style={{ minHeight: "clamp(340px,34vw,440px)" }}
         />
       </div>

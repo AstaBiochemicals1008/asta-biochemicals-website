@@ -519,6 +519,17 @@ body.asta-armed .asta-hero-rise-3 {
   background-size: 180% 180%;
   animation: astaGradientPan 22s ease-in-out infinite;
 }
+/* Homepage hero fills the whole viewport with the 88px sticky header floating
+   over its top: pull the section up under the header, then size it to a full
+   screen. svh keeps it stable on mobile so browser chrome never clips it.
+   Content is vertically centred, so it clears the overlapping header. */
+.asta-home-hero {
+  margin-top: -88px;
+  min-height: 100vh;
+  min-height: 100svh;
+  padding-top: 88px;
+}
+
 .asta-hero-slide {
   grid-area: 1/1;
   opacity: 0;
@@ -1173,6 +1184,11 @@ body.asta-armed .asta-hero-rise-3 {
   .asta-mfg-grid,
   .asta-global-grid {
     grid-template-columns: 1fr !important;
+  }
+  /* Drop the desktop video spacer so the homepage hero collapses to the
+     viewport height on mobile instead of overflowing it. */
+  .asta-hero-spacer {
+    display: none !important;
   }
   .asta-cards {
     grid-template-columns: 1fr !important;
