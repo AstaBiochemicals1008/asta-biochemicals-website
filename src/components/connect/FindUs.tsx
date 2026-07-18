@@ -1,20 +1,7 @@
 import Image from "next/image";
-import {
-  ArrowRight,
-  Factory,
-  MapPin,
-  ShoppingBag,
-  TrainFront,
-} from "lucide-react";
+import { ArrowRight, MapPin } from "lucide-react";
 
 const MAP_HREF = "https://maps.app.goo.gl/SHYPxJ91D5PBnYyLA?g_st=aw";
-
-const LANDMARKS = [
-  { icon: TrainFront, name: "Peenya Metro Station", dist: "1.2 km" },
-  { icon: ShoppingBag, name: "IKEA Bengaluru", dist: "4.5 km" },
-  { icon: TrainFront, name: "Yeshwanthpur Railway Station", dist: "5.8 km" },
-  { icon: Factory, name: "Peenya Industrial Area", dist: "0.8 km" },
-];
 
 export default function FindUs() {
   return (
@@ -107,28 +94,6 @@ export default function FindUs() {
               Get Directions
               <ArrowRight style={{ width: 18, height: 18 }} />
             </a>
-
-            <div className="asta-cn-loc-divider" />
-
-            <h4 className="asta-cn-nearby-title">Nearby Landmarks</h4>
-            <ul className="asta-cn-lm-list">
-              {LANDMARKS.map((lm) => {
-                const Icon = lm.icon;
-                return (
-                  <li key={lm.name} className="asta-cn-lm">
-                    <span className="asta-cn-lm-ico" aria-hidden="true">
-                      <Icon
-                        style={{ width: 20, height: 20, color: "#3a5a24" }}
-                      />
-                    </span>
-                    <div>
-                      <div className="asta-cn-lm-name">{lm.name}</div>
-                      <div className="asta-cn-lm-dist">{lm.dist}</div>
-                    </div>
-                  </li>
-                );
-              })}
-            </ul>
           </div>
         </div>
       </div>
