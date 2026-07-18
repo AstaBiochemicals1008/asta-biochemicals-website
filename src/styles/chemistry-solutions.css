@@ -1,0 +1,231 @@
+/* ============================================================
+   /chemistry-solutions ("Discovery Chemistry") — page-scoped CSS
+   Ported from `Chemistry Solutions.dc.html`.
+
+   The prototype's DCLogic put `tw-imgmotion` / `tw-underline` on <body>
+   from props that default to `true`, so the rules those classes gated are
+   always-on here (we can't touch the shared layout, and the rendered
+   default is "on").
+   ============================================================ */
+
+/* ---------- HERO ---------- */
+
+/* Ken Burns on the background image.
+   NOTE: the keyframes set `background-size: 100% 100%`, which overrides the
+   element's `background-size: cover` while the animation runs — i.e. the art
+   renders stretched-and-breathing, not cover-cropped. That is what the
+   prototype actually renders; reproduced as-is. Under reduced motion the
+   animation is off and `cover` takes over (also true of the prototype). */
+@keyframes astaCsKenBurnsBg {
+  0% {
+    background-size: 100% 100%;
+  }
+  50% {
+    background-size: 112% 112%;
+  }
+  100% {
+    background-size: 100% 100%;
+  }
+}
+.asta-cs-chero-bg {
+  animation: astaCsKenBurnsBg 24s ease-in-out infinite;
+}
+
+/* ---------- shared image motion ---------- */
+@keyframes astaCsImgFloat {
+  0% {
+    transform: scale(1.05) translate(0, 0);
+  }
+  50% {
+    transform: scale(1.09) translate(-1.6%, 1.2%);
+  }
+  100% {
+    transform: scale(1.05) translate(0, 0);
+  }
+}
+@keyframes astaCsShine {
+  0% {
+    transform: translateX(-130%) skewX(-18deg);
+    opacity: 0;
+  }
+  18% {
+    opacity: 0.75;
+  }
+  100% {
+    transform: translateX(240%) skewX(-18deg);
+    opacity: 0;
+  }
+}
+
+/* ---------- CONTENT ROWS ---------- */
+.asta-cs-crow-media {
+  transition: transform 1s var(--ease);
+}
+.asta-cs-crow:hover .asta-cs-crow-media {
+  transform: scale(1.05);
+}
+.asta-cs-crow:not(:hover) .asta-cs-crow-media {
+  animation: astaCsImgFloat 20s ease-in-out infinite;
+}
+
+.asta-cs-crow-media-wrap::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 42%;
+  height: 100%;
+  z-index: 4;
+  background: linear-gradient(
+    100deg,
+    transparent,
+    rgba(255, 255, 255, 0.5),
+    transparent
+  );
+  transform: translateX(-130%) skewX(-18deg);
+  pointer-events: none;
+}
+.asta-cs-crow:hover .asta-cs-crow-media-wrap::after {
+  animation: astaCsShine 0.95s ease;
+}
+
+/* Row heading: lime underline wipes in on row hover. */
+.asta-cs-crow h2 {
+  position: relative;
+  display: inline-block;
+}
+.asta-cs-crow h2::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  height: 3px;
+  width: 100%;
+  background: var(--lime-500);
+  border-radius: 2px;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.5s var(--ease);
+}
+.asta-cs-crow:hover h2::after {
+  transform: scaleX(1);
+}
+
+/* Bullet / check list items inside the rows.
+   The prototype selected these with `[style*="align-items: flex-start"]`,
+   which React's style serialization would not match — class instead. */
+.asta-cs-li {
+  transition: transform 0.3s var(--ease);
+}
+.asta-cs-crow .asta-cs-li:hover {
+  transform: translateX(5px);
+}
+.asta-cs-li svg,
+.asta-cs-li .asta-cs-dot {
+  transition: transform 0.3s var(--ease);
+}
+.asta-cs-crow .asta-cs-li:hover svg {
+  transform: scale(1.28) rotate(8deg);
+}
+.asta-cs-crow .asta-cs-li:hover .asta-cs-dot {
+  transform: scale(1.9);
+}
+.asta-cs-crow .asta-cs-li:hover span:last-child {
+  color: var(--green-900);
+}
+
+/* ---------- INDUSTRY TILES ---------- */
+/* NOTE: the `transform` below never lands. These tiles carry
+   `asta-reveal asta-cs-ind-card` together, and `body.asta-armed
+   .asta-reveal.is-in { transform: none }` outranks `:hover`. Same in the
+   prototype, where that rule was `!important`. Kept verbatim (shadow still
+   lands) rather than silently "fixed". */
+.asta-cs-ind-card {
+  transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease);
+}
+.asta-cs-ind-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 22px 46px rgba(17, 48, 43, 0.26);
+}
+.asta-cs-ind-card::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 42%;
+  height: 100%;
+  z-index: 4;
+  background: linear-gradient(
+    100deg,
+    transparent,
+    rgba(255, 255, 255, 0.5),
+    transparent
+  );
+  transform: translateX(-130%) skewX(-18deg);
+  pointer-events: none;
+}
+.asta-cs-ind-card:hover::after {
+  animation: astaCsShine 0.95s ease;
+}
+.asta-cs-ind-media {
+  transition: transform 1.1s var(--ease);
+}
+.asta-cs-ind-card:hover .asta-cs-ind-media {
+  transform: scale(1.09);
+}
+.asta-cs-ind-card:not(:hover) .asta-cs-ind-media {
+  animation: astaCsImgFloat 24s ease-in-out infinite;
+}
+.asta-cs-ind-title {
+  transition: transform 0.4s var(--ease);
+  padding-bottom: 14px;
+}
+.asta-cs-ind-card:hover .asta-cs-ind-title {
+  transform: translateY(-4px);
+}
+.asta-cs-ind-title::before {
+  content: "";
+  position: absolute;
+  left: 16px;
+  bottom: 8px;
+  width: 34px;
+  height: 3px;
+  background: var(--lime-500);
+  border-radius: 2px;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.45s var(--ease);
+}
+.asta-cs-ind-card:hover .asta-cs-ind-title::before {
+  transform: scaleX(1);
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 960px) {
+  .asta-cs-chero-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .asta-cs-chero-bg {
+    opacity: 0.35 !important;
+  }
+  .asta-cs-ind-grid {
+    grid-template-columns: 1fr 1fr !important;
+  }
+  .asta-cs-crow {
+    grid-template-columns: 1fr !important;
+  }
+  .asta-cs-crow-media-wrap {
+    min-height: 280px !important;
+  }
+  .asta-cs-crow-cols {
+    grid-template-columns: 1fr !important;
+  }
+}
+@media (max-width: 640px) {
+  .asta-cs-crow-lists {
+    grid-template-columns: 1fr !important;
+  }
+  .asta-cs-ind-grid {
+    grid-template-columns: 1fr 1fr !important;
+  }
+}

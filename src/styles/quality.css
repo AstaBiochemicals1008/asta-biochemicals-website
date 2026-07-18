@@ -1,0 +1,536 @@
+/* ============================================================
+   /quality — page-scoped rules.
+   Ported from the <style> block in Quality.dc.html.
+   Everything here is prefixed `asta-q-` so it can't collide with the
+   shared `.asta-*` rules in globals.css — in particular the prototype's
+   `.asta-cert-card` / `.asta-cert-grid` (a static grid) collide by name
+   with globals' marquee `.asta-cert-card`, hence the rename.
+   ============================================================ */
+
+/* ---- HERO -------------------------------------------------- */
+@keyframes astaQKenBurns {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.07);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+.asta-q-kenburns {
+  animation: astaQKenBurns 22s ease-in-out infinite;
+}
+
+.asta-q-hero-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+/* The hero uses the shared `astaRise` entrance (`.asta-hero-rise` in
+   globals.css) but with its own five-step delay ramp — globals only
+   defines three, on different timings. Gated on `body.asta-armed` to
+   match the specificity of the globals rule it sits beside. */
+body.asta-armed .asta-q-rise-1 {
+  animation-delay: 0.15s;
+}
+body.asta-armed .asta-q-rise-2 {
+  animation-delay: 0.32s;
+}
+body.asta-armed .asta-q-rise-3 {
+  animation-delay: 0.5s;
+}
+body.asta-armed .asta-q-rise-4 {
+  animation-delay: 0.68s;
+}
+body.asta-armed .asta-q-rise-5 {
+  animation-delay: 0.86s;
+}
+
+/* The one paragraph on this page that opts out of the global 14px `p`
+   rule — the prototype declares exactly this (`p.asta-hero-rise-4`).
+   Colour still comes from the global rule (#5C6964); the inline
+   `color: var(--gray-700)` in the mockup is dead. */
+p.asta-q-rise-4 {
+  font-size: 18px !important;
+  line-height: 1.7 !important;
+}
+
+/* ---- SHARED PANEL ------------------------------------------ */
+.asta-q-panel {
+  transition: box-shadow 0.45s var(--ease), transform 0.45s var(--ease);
+}
+.asta-q-panel:hover {
+  box-shadow: 0 30px 64px rgba(17, 48, 43, 0.14);
+  transform: translateY(-4px);
+}
+
+/* ---- COMPLIANCE DASHBOARD — certification cards ------------ */
+.asta-q-cert-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+  margin-top: 26px;
+}
+.asta-q-cert-card {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  background: #fff;
+  border: 1px solid var(--gray-200);
+  cursor: default;
+  display: flex;
+  align-items: stretch;
+  min-height: 148px;
+  transition: opacity 0.7s var(--ease),
+    transform 0.8s cubic-bezier(0.34, 1.28, 0.5, 1), box-shadow 0.4s var(--ease);
+}
+body.asta-armed .asta-q-cert-card {
+  opacity: 0;
+  transform: translateY(38px) scale(0.92);
+}
+body.asta-armed .asta-reveal.is-in .asta-q-cert-card {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+body.asta-armed .asta-reveal.is-in .asta-q-cert-card:nth-child(1) {
+  transition-delay: 0.04s;
+}
+body.asta-armed .asta-reveal.is-in .asta-q-cert-card:nth-child(2) {
+  transition-delay: 0.12s;
+}
+body.asta-armed .asta-reveal.is-in .asta-q-cert-card:nth-child(3) {
+  transition-delay: 0.2s;
+}
+body.asta-armed .asta-reveal.is-in .asta-q-cert-card:nth-child(4) {
+  transition-delay: 0.28s;
+}
+body.asta-armed .asta-reveal.is-in .asta-q-cert-card:nth-child(5) {
+  transition-delay: 0.36s;
+}
+body.asta-armed .asta-reveal.is-in .asta-q-cert-card:nth-child(6) {
+  transition-delay: 0.44s;
+}
+body.asta-armed .asta-reveal.is-in .asta-q-cert-card:nth-child(7) {
+  transition-delay: 0.52s;
+}
+body.asta-armed .asta-reveal.is-in .asta-q-cert-card:nth-child(8) {
+  transition-delay: 0.6s;
+}
+.asta-q-cert-img {
+  position: relative;
+  flex: 0 0 44%;
+  align-self: stretch;
+  overflow: hidden;
+}
+.asta-q-cert-img img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s var(--ease);
+}
+/* Feathers the photo out into the card's white text side. */
+.asta-q-cert-img::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  background: linear-gradient(
+    90deg,
+    transparent 45%,
+    rgba(255, 255, 255, 0.65) 78%,
+    #fff 100%
+  );
+}
+.asta-q-cert-txt {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 6px;
+  padding: 16px 20px 16px 6px;
+}
+/* Plain divs, not headings — the global heading/paragraph !important block
+   never reaches them, so these sizes are what actually renders. */
+.asta-q-cert-title {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: clamp(15px, 1.15vw, 18px);
+  line-height: 1.15;
+  color: var(--green-900);
+  letter-spacing: -0.01em;
+}
+.asta-q-cert-sub {
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: clamp(13px, 0.95vw, 15px);
+  line-height: 1.35;
+  color: var(--gray-700);
+}
+/* `!important` so the hover lift beats the `.is-in` settled transform. */
+.asta-q-cert-card:hover {
+  transform: translateY(-8px) scale(1.02) !important;
+  box-shadow: 0 22px 48px rgba(17, 48, 43, 0.14);
+  border-color: var(--green-300);
+}
+.asta-q-cert-card:hover .asta-q-cert-img img {
+  transform: scale(1.06);
+}
+
+/* ---- QUALITY JOURNEY --------------------------------------- */
+@keyframes astaQjPulse {
+  0%,
+  14%,
+  100% {
+    transform: translateY(0) scale(1);
+    box-shadow: 0 6px 18px rgba(17, 48, 43, 0.1), 0 0 0 0 rgba(167, 197, 32, 0);
+    border-color: var(--green-200);
+    background: #fff;
+  }
+  5%,
+  9% {
+    transform: translateY(-9px) scale(1.1);
+    box-shadow: 0 16px 34px rgba(17, 48, 43, 0.18),
+      0 0 0 8px rgba(167, 197, 32, 0.28), 0 0 30px rgba(167, 197, 32, 0.6);
+    border-color: var(--lime-600);
+    /* --lime-050 is not defined in the token set — the fallback is what
+       renders, in the prototype too. */
+    background: var(--lime-050, #f2f7e0);
+  }
+}
+@keyframes astaQjChevGlow {
+  0%,
+  22%,
+  100% {
+    color: var(--green-300);
+    filter: none;
+  }
+  10% {
+    color: var(--lime-600);
+    filter: drop-shadow(0 0 5px rgba(167, 197, 32, 0.8));
+  }
+}
+@keyframes astaQjFlow {
+  to {
+    background-position: 9px 0;
+  }
+}
+@keyframes astaQjChevNudge {
+  0%,
+  100% {
+    transform: translate(0, -50%);
+  }
+  50% {
+    transform: translate(3px, -50%);
+  }
+}
+
+.asta-q-journey-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 6px;
+}
+.asta-q-journey-step {
+  flex: 0 0 auto;
+  width: 118px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  transition: opacity 0.55s var(--ease),
+    transform 0.6s cubic-bezier(0.34, 1.3, 0.5, 1), filter 0.3s;
+}
+body.asta-armed .asta-q-journey-step {
+  opacity: 0;
+  transform: translateY(20px) scale(0.9);
+}
+.asta-q-journey-conn {
+  flex: 1 1 auto;
+  min-width: 14px;
+  height: 2px;
+  margin-top: 36px;
+  position: relative;
+  background: repeating-linear-gradient(
+    90deg,
+    var(--green-300) 0 4px,
+    transparent 4px 9px
+  );
+  transform-origin: left center;
+  transition: opacity 0.5s var(--ease), transform 0.55s var(--ease);
+}
+body.asta-armed .asta-q-journey-conn {
+  opacity: 0;
+  transform: scaleX(0.25);
+}
+body.asta-armed .asta-reveal.is-in .asta-q-journey-step {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+body.asta-armed .asta-reveal.is-in .asta-q-journey-conn {
+  opacity: 1;
+  transform: scaleX(1);
+  animation: astaQjFlow 0.7s linear infinite;
+}
+/* Steps sit at odd child positions, connectors at even ones. */
+body.asta-armed .asta-reveal.is-in .asta-q-journey-step:nth-child(1) {
+  transition-delay: 0.05s;
+}
+body.asta-armed .asta-reveal.is-in .asta-q-journey-conn:nth-child(2) {
+  transition-delay: 0.2s;
+}
+body.asta-armed .asta-reveal.is-in .asta-q-journey-step:nth-child(3) {
+  transition-delay: 0.28s;
+}
+body.asta-armed .asta-reveal.is-in .asta-q-journey-conn:nth-child(4) {
+  transition-delay: 0.43s;
+}
+body.asta-armed .asta-reveal.is-in .asta-q-journey-step:nth-child(5) {
+  transition-delay: 0.51s;
+}
+body.asta-armed .asta-reveal.is-in .asta-q-journey-conn:nth-child(6) {
+  transition-delay: 0.66s;
+}
+body.asta-armed .asta-reveal.is-in .asta-q-journey-step:nth-child(7) {
+  transition-delay: 0.74s;
+}
+body.asta-armed .asta-reveal.is-in .asta-q-journey-conn:nth-child(8) {
+  transition-delay: 0.89s;
+}
+body.asta-armed .asta-reveal.is-in .asta-q-journey-step:nth-child(9) {
+  transition-delay: 0.97s;
+}
+body.asta-armed .asta-reveal.is-in .asta-q-journey-conn:nth-child(10) {
+  transition-delay: 1.12s;
+}
+body.asta-armed .asta-reveal.is-in .asta-q-journey-step:nth-child(11) {
+  transition-delay: 1.2s;
+}
+body.asta-armed .asta-reveal.is-in .asta-q-journey-conn:nth-child(12) {
+  transition-delay: 1.35s;
+}
+body.asta-armed .asta-reveal.is-in .asta-q-journey-step:nth-child(13) {
+  transition-delay: 1.43s;
+}
+
+.asta-q-journey-ring {
+  width: 74px;
+  height: 74px;
+  border-radius: 50%;
+  border: 1.5px solid var(--lime-500);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+  transition: transform 0.35s var(--ease), border-color 0.3s, background 0.3s;
+}
+.asta-reveal.is-in .asta-q-journey-step:not(:hover) .asta-q-journey-ring {
+  animation: astaQjPulse 7s ease-in-out infinite;
+}
+.asta-reveal.is-in .asta-q-journey-step:nth-child(1) .asta-q-journey-ring {
+  animation-delay: 0s;
+}
+.asta-reveal.is-in .asta-q-journey-step:nth-child(3) .asta-q-journey-ring {
+  animation-delay: 1s;
+}
+.asta-reveal.is-in .asta-q-journey-step:nth-child(5) .asta-q-journey-ring {
+  animation-delay: 2s;
+}
+.asta-reveal.is-in .asta-q-journey-step:nth-child(7) .asta-q-journey-ring {
+  animation-delay: 3s;
+}
+.asta-reveal.is-in .asta-q-journey-step:nth-child(9) .asta-q-journey-ring {
+  animation-delay: 4s;
+}
+.asta-reveal.is-in .asta-q-journey-step:nth-child(11) .asta-q-journey-ring {
+  animation-delay: 5s;
+}
+.asta-reveal.is-in .asta-q-journey-step:nth-child(13) .asta-q-journey-ring {
+  animation-delay: 6s;
+}
+.asta-q-journey-step:hover {
+  z-index: 2;
+}
+.asta-q-journey-step:hover .asta-q-journey-ring {
+  border-color: var(--green-600);
+  background: var(--green-050);
+  transform: scale(1.08);
+}
+.asta-q-journey-label {
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.35;
+  color: var(--green-900);
+  margin-top: 15px;
+}
+/* The prototype's chevron was `<i data-lucide>`, replaced at runtime by an
+   <svg>; lucide-react renders the <svg> directly, so target that. */
+.asta-q-journey-conn > svg {
+  position: absolute;
+  right: -6px;
+  top: 50%;
+  transform: translate(0, -50%);
+  color: var(--lime-600);
+}
+.asta-reveal.is-in .asta-q-journey-conn > svg {
+  animation: astaQjChevNudge 1.1s ease-in-out infinite,
+    astaQjChevGlow 7s ease-in-out infinite;
+}
+.asta-reveal.is-in .asta-q-journey-conn:nth-child(2) > svg {
+  animation-delay: 0s, 0.5s;
+}
+.asta-reveal.is-in .asta-q-journey-conn:nth-child(4) > svg {
+  animation-delay: 0s, 1.5s;
+}
+.asta-reveal.is-in .asta-q-journey-conn:nth-child(6) > svg {
+  animation-delay: 0s, 2.5s;
+}
+.asta-reveal.is-in .asta-q-journey-conn:nth-child(8) > svg {
+  animation-delay: 0s, 3.5s;
+}
+.asta-reveal.is-in .asta-q-journey-conn:nth-child(10) > svg {
+  animation-delay: 0s, 4.5s;
+}
+.asta-reveal.is-in .asta-q-journey-conn:nth-child(12) > svg {
+  animation-delay: 0s, 5.5s;
+}
+
+/* ---- RISK MANAGEMENT --------------------------------------- */
+@keyframes astaQRiskWipe {
+  0% {
+    clip-path: inset(0 100% 0 0);
+  }
+  100% {
+    clip-path: inset(0 0 0 0);
+  }
+}
+.asta-q-risk-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 16px;
+}
+.asta-q-risk-card {
+  position: relative;
+  border: 1px solid var(--gray-200);
+  border-radius: 14px;
+  overflow: hidden;
+  background: #fff;
+}
+/* The cards carry `asta-reveal asta-q-risk-card` together. The extra class
+   here matches globals' `body.asta-armed .asta-reveal` specificity so this
+   page's shorter 34px entrance offset wins, as it does in the prototype.
+   The settled state (opacity 1 / transform none) and its transition come
+   from globals' `.asta-reveal.is-in` — identical values to the prototype.
+   Stagger comes from `data-reveal-delay` on each card, which MotionRoot
+   honours; the prototype's `.is-in:nth-child()` transition-delays were
+   already dead there (its reveal driver set an inline transition-delay
+   from the same data attribute), so they are deliberately not ported. */
+body.asta-armed .asta-reveal.asta-q-risk-card {
+  opacity: 0;
+  transform: translateY(34px) scale(0.94);
+}
+/* NOTE: the prototype also set `transform: translateY(-6px) scale(1)` here,
+   but `.asta-reveal.is-in`'s `transform: none` outranks it, so the lift
+   never rendered. Border and shadow still land. Reproduced as rendered. */
+.asta-q-risk-card:hover {
+  box-shadow: 0 22px 46px rgba(17, 48, 43, 0.14);
+  border-color: var(--green-300);
+}
+.asta-q-risk-card.is-hi {
+  border-color: var(--lime-500);
+  box-shadow: 0 0 0 1px var(--lime-500), 0 16px 40px rgba(17, 48, 43, 0.1);
+}
+.asta-q-risk-media {
+  transition: transform 1s var(--ease);
+}
+body.asta-armed .asta-q-risk-media {
+  clip-path: inset(0 100% 0 0);
+}
+.asta-q-risk-card.is-in .asta-q-risk-media {
+  animation: astaQRiskWipe 0.8s cubic-bezier(0.65, 0, 0.35, 1) both;
+}
+.asta-q-risk-card.is-in:nth-child(1) .asta-q-risk-media {
+  animation-delay: 0.2s;
+}
+.asta-q-risk-card.is-in:nth-child(2) .asta-q-risk-media {
+  animation-delay: 0.31s;
+}
+.asta-q-risk-card.is-in:nth-child(3) .asta-q-risk-media {
+  animation-delay: 0.42s;
+}
+.asta-q-risk-card.is-in:nth-child(4) .asta-q-risk-media {
+  animation-delay: 0.53s;
+}
+.asta-q-risk-card.is-in:nth-child(5) .asta-q-risk-media {
+  animation-delay: 0.64s;
+}
+.asta-q-risk-card:hover .asta-q-risk-media {
+  transform: scale(1.08);
+}
+.asta-q-risk-label {
+  padding: 15px 12px;
+  text-align: center;
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--green-900);
+}
+.asta-q-risk-label.is-hi {
+  color: var(--lime-700);
+}
+
+/* ---- RESPONSIVE -------------------------------------------- */
+@media (max-width: 920px) {
+  .asta-q-hero-grid {
+    grid-template-columns: 1fr !important;
+    min-height: 0 !important;
+  }
+  .asta-q-journey-row {
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    gap: 30px 18px !important;
+  }
+  .asta-q-journey-conn {
+    display: none !important;
+  }
+  .asta-q-risk-grid {
+    grid-template-columns: 1fr 1fr !important;
+  }
+  .asta-q-cert-grid {
+    grid-template-columns: 1fr 1fr !important;
+  }
+}
+@media (max-width: 560px) {
+  .asta-q-risk-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .asta-q-cert-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* ---- REDUCED MOTION ---------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .asta-q-kenburns,
+  .asta-q-journey-conn,
+  .asta-q-journey-conn > svg,
+  .asta-q-journey-ring,
+  .asta-q-risk-media {
+    animation: none !important;
+    transition: none !important;
+  }
+  body.asta-armed .asta-q-cert-card,
+  body.asta-armed .asta-q-journey-step,
+  body.asta-armed .asta-q-journey-conn,
+  body.asta-armed .asta-reveal.asta-q-risk-card {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  body.asta-armed .asta-q-risk-media {
+    clip-path: inset(0 0 0 0) !important;
+  }
+}

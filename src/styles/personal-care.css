@@ -1,0 +1,174 @@
+/* ============================================================
+   PERSONAL CARE (/personal-care) — page-scoped styles.
+   Ported from `Personal Care.dc.html`. Everything here is
+   prefixed `asta-pc-` so it cannot collide with globals.css.
+   Keyframes are duplicated (rather than reusing globals.css's
+   astaSheen) so this file stays self-contained.
+   ============================================================ */
+
+/* ---------- hero ---------- */
+@keyframes astaPcKenBurns {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.07);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+.asta-pc-kenburns {
+  animation: astaPcKenBurns 22s ease-in-out infinite;
+}
+
+/* The prototype pulsed the 6px lime eyebrow dots via
+   `span[style*="width: 6px"][style*="background: var(--lime-500)"]`.
+   React serializes inline styles without the space after the colon, so that
+   attribute selector could never match — applied as a class instead.
+   NOTE: the hero's dot is 8px and deliberately does NOT pulse. */
+@keyframes astaPcDotPulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.6);
+    opacity: 0.5;
+  }
+}
+.asta-pc-dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--lime-500);
+  animation: astaPcDotPulse 2.4s ease-in-out infinite;
+}
+
+/* ---------- shared card sheen ---------- */
+@keyframes astaPcSheen {
+  0% {
+    left: -70%;
+    opacity: 0;
+  }
+  18% {
+    opacity: 1;
+  }
+  100% {
+    left: 130%;
+    opacity: 0;
+  }
+}
+.asta-pc-scard,
+.asta-pc-appcard {
+  position: relative;
+}
+.asta-pc-scard::before,
+.asta-pc-appcard::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -70%;
+  width: 45%;
+  height: 100%;
+  z-index: 5;
+  background: linear-gradient(
+    100deg,
+    transparent,
+    rgba(255, 255, 255, 0.42),
+    transparent
+  );
+  transform: skewX(-18deg);
+  opacity: 0;
+  pointer-events: none;
+}
+.asta-pc-scard:hover::before,
+.asta-pc-appcard:hover::before {
+  animation: astaPcSheen 0.9s ease;
+}
+
+/* ---------- solutions cards ---------- */
+.asta-pc-scard {
+  transition: transform 0.45s var(--ease), box-shadow 0.45s var(--ease),
+    border-color 0.45s var(--ease);
+}
+.asta-pc-scard:hover {
+  transform: translateY(-6px);
+  border-color: #265c53;
+  box-shadow: 0 26px 56px rgba(17, 48, 43, 0.16);
+}
+.asta-pc-scard-media {
+  transition: transform 1s var(--ease);
+}
+.asta-pc-scard:hover .asta-pc-scard-media {
+  transform: scale(1.06);
+}
+
+/* ---------- application cards ---------- */
+.asta-pc-appcard {
+  transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease);
+}
+.asta-pc-appcard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 22px 46px rgba(17, 48, 43, 0.14);
+}
+.asta-pc-appcard-media {
+  transition: transform 0.9s var(--ease);
+}
+.asta-pc-appcard:hover .asta-pc-appcard-media {
+  transform: scale(1.07);
+}
+
+/* ---------- card heading: nudge + lime underline on hover ----------
+   NOTE: the prototype also set `color: var(--green-700)` on these on hover,
+   but the global `h3 { color:#15352f !important }` nullified it — the heading
+   never actually changed colour. Reproduced as rendered. */
+.asta-pc-scard h3,
+.asta-pc-appcard h3 {
+  position: relative;
+  display: inline-block;
+  transition: color 0.35s var(--ease), transform 0.35s var(--ease);
+}
+.asta-pc-scard h3::after,
+.asta-pc-appcard h3::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  width: 100%;
+  height: 2px;
+  background: var(--lime-500);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s var(--ease);
+}
+.asta-pc-scard:hover h3,
+.asta-pc-appcard:hover h3 {
+  transform: translateX(4px);
+}
+.asta-pc-scard:hover h3::after,
+.asta-pc-appcard:hover h3::after {
+  transform: scaleX(1);
+}
+
+/* ---------- responsive ----------
+   Own breakpoints: this page's hero collapses at 980px, whereas the shared
+   `.asta-hero-grid` in globals.css collapses at 900px. Hence the local class. */
+@media (max-width: 980px) {
+  .asta-pc-hero-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .asta-pc-sol-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .asta-pc-app-grid {
+    grid-template-columns: 1fr 1fr !important;
+  }
+}
+@media (max-width: 640px) {
+  .asta-pc-app-grid {
+    grid-template-columns: 1fr !important;
+  }
+}

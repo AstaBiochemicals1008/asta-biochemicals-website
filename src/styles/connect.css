@@ -1,0 +1,162 @@
+/* ============================================================
+   /connect — page-scoped rules.
+   Ported from the <style> block in Connect.dc.html.
+   Everything here is prefixed `asta-cn-` so it can't collide with
+   the shared `.asta-*` rules in globals.css.
+   ============================================================ */
+
+/* ---- HERO ENTRANCE ----------------------------------------
+   The base `astaRise` animation comes from globals' `.asta-hero-rise`
+   (identical in both files). Only the delays are page-local: Connect
+   uses a 4-step .15/.35/.55/.75 ladder where the homepage uses a
+   3-step .15/.38/.62 one, so reusing `.asta-hero-rise-N` would both
+   retime this hero AND drag in globals' `p.asta-hero-rise-3` 18px
+   opt-out on the wrong paragraph. */
+body.asta-armed .asta-cn-rise-1 {
+  animation-delay: 0.15s;
+}
+body.asta-armed .asta-cn-rise-2 {
+  animation-delay: 0.35s;
+}
+body.asta-armed .asta-cn-rise-3 {
+  animation-delay: 0.55s;
+}
+body.asta-armed .asta-cn-rise-4 {
+  animation-delay: 0.75s;
+}
+
+/* The one paragraph on this page that opts out of the global 14px rule
+   (prototype: `p.asta-hero-rise-4`). Its sibling "We're here to help."
+   carries no opt-out, so it renders at the global 14px/400/#5C6964 —
+   its inline 700 / clamp(1.2rem…) / --lime-700 never landed. */
+p.asta-cn-rise-4 {
+  font-size: 18px !important;
+  line-height: 1.7 !important;
+}
+
+/* ---- HERO ART ---------------------------------------------
+   Page-local float: globals' `.asta-hero-float` keyframes bake in a
+   `translateY(-50%)` for the homepage's vertically-centred art. This
+   hero's image is inset:0/cover, so it floats from a zero baseline. */
+@keyframes astaCnHeroFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-18px);
+  }
+}
+.asta-cn-hero-float {
+  animation: astaCnHeroFloat 8s ease-in-out infinite;
+}
+
+.asta-cn-hero-art {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+/* Page-local grid: the prototype reused `.asta-hero-grid` but collapses it
+   at 980px, where globals.css collapses `.asta-hero-grid` at 900px. */
+.asta-cn-hero-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+/* ---- CONTACT CARDS ---------------------------------------- */
+.asta-cn-contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.asta-cn-cc {
+  transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease),
+    border-color 0.4s var(--ease);
+}
+.asta-cn-cc:hover {
+  transform: translateY(-8px);
+  border-color: var(--lime-500);
+  box-shadow: 0 28px 56px rgba(94, 140, 30, 0.16);
+}
+
+/* The prototype selected this with `span[style*="border-radius: 50%"]`.
+   React serializes inline styles without the space after the colon, so that
+   attribute selector would never match — using an explicit class instead
+   (same trap as `.asta-eyebrow` in globals.css).
+   NOTE: the prototype's `background: var(--green-100)` on hover is inert —
+   the span carries an inline `background: var(--green-050)` which outranks a
+   class rule. Only the transform rendered; only the transform is kept. */
+.asta-cn-cc-ico {
+  transition: transform 0.45s cubic-bezier(0.34, 1.5, 0.5, 1),
+    background 0.35s var(--ease);
+}
+.asta-cn-cc:hover .asta-cn-cc-ico {
+  transform: scale(1.14) rotate(-8deg);
+}
+
+/* NOTE: the prototype's `color: var(--lime-700)` on hover is likewise inert —
+   the title div carries an inline `color: var(--green-900)`. Nudge only. */
+.asta-cn-cc-title {
+  font-size: 18px !important;
+  transition: color 0.35s var(--ease), transform 0.35s var(--ease);
+}
+.asta-cn-cc:hover .asta-cn-cc-title {
+  transform: translateX(4px);
+}
+
+.asta-cn-cc > div:last-child {
+  transition: transform 0.4s var(--ease);
+}
+.asta-cn-cc:hover > div:last-child {
+  transform: translateX(4px);
+}
+
+/* NOTE: the prototype also set `.asta-cc:hover a[href] { color: var(--lime-700) }`.
+   Inert — those links carry an inline `color: var(--green-700)`. The
+   `translateX(3px)` from globals' `.asta-nf-link:hover` is what renders. */
+
+/* ---- FIND US / MAP ---------------------------------------- */
+.asta-cn-map-card {
+  transition: transform 0.5s var(--ease), box-shadow 0.5s var(--ease),
+    border-color 0.5s var(--ease);
+}
+.asta-cn-map-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--lime-500);
+  box-shadow: 0 30px 60px rgba(17, 48, 43, 0.16);
+}
+.asta-cn-map-card img {
+  transition: transform 1.1s var(--ease);
+}
+.asta-cn-map-card:hover img {
+  transform: scale(1.05);
+}
+
+/* ---- RESPONSIVE ------------------------------------------- */
+@media (max-width: 980px) {
+  .asta-cn-hero-grid {
+    grid-template-columns: 1fr !important;
+  }
+  /* The art un-anchors and becomes a 260px band. It precedes the copy in the
+     DOM, so on narrow screens it stacks above the heading — as in the
+     prototype. */
+  .asta-cn-hero-art {
+    position: relative !important;
+    width: auto !important;
+    height: 260px !important;
+    margin: 24px -20px -20px !important;
+  }
+}
+@media (max-width: 520px) {
+  .asta-cn-contact-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* ---- REDUCED MOTION --------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .asta-cn-hero-float {
+    animation: none !important;
+  }
+}

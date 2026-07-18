@@ -1,0 +1,1243 @@
+@import "tailwindcss";
+
+/* ============================================================
+   ASTA BIOCHEMICALS — Core Foundations
+   Ported from _ds/…/colors_and_type.css + the per-page overrides
+   the prototypes applied on top of it.
+   ============================================================ */
+
+:root {
+  /* Brand — Dark Forest Green (primary) */
+  --green-900: #11302b;
+  --green-800: #18443c;
+  --green-700: #1e524a;
+  --green-600: #265c53;
+  --green-500: #347a6e;
+  --green-400: #4f9a8c;
+  --green-300: #8abdb3;
+  --green-200: #bfdcd6;
+  --green-100: #e1efec;
+  --green-050: #f1f8f6;
+
+  /* Secondary accent — Lime Yellow-Green (use sparingly) */
+  --lime-700: #9aa524;
+  --lime-600: #b4bf33;
+  --lime-500: #cdd849;
+  --lime-400: #d8e070;
+  --lime-300: #e6ec9e;
+  --lime-100: #f6f8db;
+
+  /* Neutrals — cool-leaning grays for a clean lab feel */
+  --white: #ffffff;
+  --gray-050: #f7f9f8;
+  --gray-100: #eef1f0;
+  --gray-200: #e2e7e5;
+  --gray-300: #cdd4d2;
+  --gray-400: #a7b1ae;
+  --gray-500: #7c8783;
+  --gray-600: #5a6562;
+  --gray-700: #3e4845;
+  --gray-800: #28302e;
+  --gray-900: #161b1a;
+
+  /* Semantic status */
+  --success: #2e8b6f;
+  --warning: #c9911f;
+  --danger: #c0492f;
+  --info: #2f6f8f;
+
+  /* Semantic tokens */
+  --bg: var(--white);
+  --bg-subtle: var(--gray-050);
+  --bg-band: var(--green-050);
+  --bg-ink: var(--green-900);
+
+  --fg: var(--gray-900);
+  /* NOTE: prototypes override the design-system --fg-body (--gray-700) with this. */
+  --fg-body: #5f6c72;
+  --fg-muted: var(--gray-500);
+  --fg-faint: var(--gray-400);
+  --fg-on-dark: #eaf3f0;
+  --fg-on-dark-muted: #a9c4bd;
+
+  --brand: var(--green-600);
+  --brand-strong: var(--green-900);
+  --brand-hover: var(--green-700);
+  --brand-press: var(--green-800);
+  --accent: var(--lime-500);
+  --accent-ink: var(--lime-700);
+
+  --border: var(--gray-200);
+  --border-strong: var(--gray-300);
+  --divider: var(--gray-100);
+  --ring: var(--green-400);
+
+  /* TYPE — the prototypes collapse all three roles onto Manrope. */
+  --font-display: var(--font-manrope), "Segoe UI", system-ui, sans-serif;
+  --font-sans: var(--font-manrope), "Segoe UI", system-ui, sans-serif;
+  --font-mono: var(--font-manrope), ui-monospace, "SFMono-Regular", monospace;
+
+  --w-regular: 400;
+  --w-medium: 500;
+  --w-semibold: 600;
+  --w-bold: 700;
+  --w-extra: 800;
+
+  /* TYPE — fluid scale */
+  --t-display: clamp(2.75rem, 1.6rem + 4.6vw, 4.5rem);
+  --t-h1: clamp(2.1rem, 1.4rem + 2.8vw, 3.25rem);
+  --t-h2: clamp(1.65rem, 1.2rem + 1.8vw, 2.4rem);
+  --t-h3: clamp(1.3rem, 1.05rem + 1vw, 1.6rem);
+  --t-h4: 1.2rem;
+  --t-body-lg: 1.125rem;
+  --t-body: 1rem;
+  --t-small: 0.9375rem;
+  --t-caption: 0.8125rem;
+  --t-eyebrow: 0.75rem;
+
+  --lh-tight: 1.04;
+  --lh-snug: 1.18;
+  --lh-normal: 1.5;
+  --lh-relaxed: 1.62;
+  --tr-tight: -0.02em;
+  --tr-normal: 0;
+  --tr-wide: 0.04em;
+  --tr-eyebrow: 0.16em;
+
+  /* SPACING — 4px base scale */
+  --sp-1: 4px;
+  --sp-2: 8px;
+  --sp-3: 12px;
+  --sp-4: 16px;
+  --sp-5: 24px;
+  --sp-6: 32px;
+  --sp-7: 48px;
+  --sp-8: 64px;
+  --sp-9: 96px;
+  --sp-10: 128px;
+  --section-y: clamp(64px, 8vw, 128px);
+  --gutter: clamp(20px, 5vw, 64px);
+  --maxw: 1240px;
+
+  /* RADII */
+  --r-xs: 3px;
+  --r-sm: 6px;
+  --r-md: 10px;
+  --r-lg: 16px;
+  --r-xl: 24px;
+  --r-pill: 999px;
+
+  /* ELEVATION */
+  --sh-xs: 0 1px 2px rgba(17, 48, 43, 0.06);
+  --sh-sm: 0 2px 6px rgba(17, 48, 43, 0.07), 0 1px 2px rgba(17, 48, 43, 0.05);
+  --sh-md: 0 8px 24px rgba(17, 48, 43, 0.08), 0 2px 6px rgba(17, 48, 43, 0.05);
+  --sh-lg: 0 18px 48px rgba(17, 48, 43, 0.12), 0 4px 12px rgba(17, 48, 43, 0.06);
+  --sh-ring: 0 0 0 4px rgba(79, 154, 140, 0.28);
+
+  /* Motion */
+  --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-fast: 120ms;
+  --dur: 220ms;
+  --dur-slow: 420ms;
+}
+
+@theme inline {
+  --color-background: var(--white);
+  --color-foreground: var(--fg);
+  --font-sans: var(--font-manrope);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--white);
+  color: var(--fg-body);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+svg.lucide {
+  stroke-width: 1.6;
+}
+
+/* ===== GLOBAL TYPOGRAPHY SYSTEM — single source of truth =====
+   These carry !important in the prototypes, which means they beat the
+   per-element inline font-size/color the mockups also carry. That cascade
+   IS the rendered design — e.g. every h3 renders 18px/#15352F regardless of
+   an inline `font-size:20px`. Keep !important here and do NOT re-declare
+   type size/color inline on headings or paragraphs. */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-sans) !important;
+  color: #15352f !important;
+}
+h1 {
+  font-size: clamp(2.25rem, 1.1rem + 3.4vw, 3.5rem) !important;
+  font-weight: 700 !important;
+  line-height: 1.1 !important;
+  letter-spacing: -0.02em !important;
+}
+h2 {
+  font-size: clamp(1.9rem, 1.2rem + 2vw, 2.5rem) !important;
+  font-weight: 600 !important;
+  line-height: 1.2 !important;
+  letter-spacing: -0.01em !important;
+}
+h3 {
+  font-size: 18px !important;
+  font-weight: 600 !important;
+  line-height: 1.3 !important;
+}
+h4 {
+  font-size: 16px !important;
+  font-weight: 600 !important;
+  line-height: 1.35 !important;
+}
+h5,
+h6 {
+  font-size: 1.375rem !important;
+  font-weight: 600 !important;
+  line-height: 1.35 !important;
+}
+p {
+  font-size: 14px !important;
+  font-weight: 400 !important;
+  color: #5c6964 !important;
+  line-height: 1.6 !important;
+}
+/* The one paragraph that opts out of the 14px rule. */
+p.asta-hero-rise-3 {
+  font-size: 18px !important;
+  line-height: 1.7 !important;
+}
+
+/* Eyebrow / kicker labels.
+   The prototype targeted these with an inline-style attribute selector
+   (`[style*="text-transform: uppercase"]`), which React's style
+   serialization would not match. Applied as an explicit class instead. */
+.asta-eyebrow {
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--brand);
+}
+
+/* ============================================================
+   HEADER / NAV
+   ============================================================ */
+.asta-navlink,
+.asta-navlink:link,
+.asta-navlink:visited,
+.asta-navlink:active,
+.asta-navlink:focus {
+  color: var(--green-900);
+}
+.asta-navlink {
+  font-weight: 500;
+  transition: color 0.25s var(--ease), border-color 0.25s var(--ease);
+}
+.asta-navlink:hover {
+  color: var(--green-700);
+  border-bottom-color: var(--lime-500);
+}
+
+.asta-dd {
+  position: relative;
+  display: inline-flex;
+}
+.asta-dd-menu {
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 0;
+  min-width: 212px;
+  background: #fff;
+  border: 1px solid var(--gray-200);
+  border-radius: 12px;
+  box-shadow: 0 18px 42px rgba(17, 48, 43, 0.18);
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(6px);
+  transition: opacity 0.22s var(--ease), transform 0.22s var(--ease),
+    visibility 0.22s;
+  z-index: 80;
+}
+.asta-dd:hover .asta-dd-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+}
+.asta-dd-menu a {
+  display: block;
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--green-900);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background 0.18s var(--ease), transform 0.18s var(--ease);
+}
+.asta-dd-menu a:hover {
+  background: var(--green-050);
+  transform: translateX(2px);
+}
+
+.asta-burger {
+  display: none;
+}
+@media (max-width: 1240px) {
+  .asta-nav,
+  .asta-search {
+    display: none !important;
+  }
+  .asta-burger {
+    display: inline-flex !important;
+  }
+}
+
+/* ============================================================
+   BUTTONS — hover motion for the solid lime / green CTAs
+   ============================================================ */
+.asta-btn-lime,
+.asta-btn-green {
+  transition: transform 0.28s var(--ease), box-shadow 0.28s var(--ease),
+    filter 0.28s var(--ease);
+}
+.asta-btn-lime svg,
+.asta-btn-green svg {
+  transition: transform 0.28s var(--ease);
+}
+.asta-btn-lime:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 26px rgba(120, 140, 30, 0.34);
+  filter: brightness(0.97);
+}
+.asta-btn-green:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 30px rgba(17, 48, 43, 0.3);
+  filter: brightness(0.94);
+}
+.asta-btn-lime:hover svg,
+.asta-btn-green:hover svg {
+  transform: translateX(3px);
+}
+.asta-cta-primary svg {
+  transition: transform 0.35s var(--ease);
+}
+.asta-cta-primary:hover svg {
+  transform: translateX(5px);
+}
+.asta-cta-ghost {
+  transition: border-color 0.3s var(--ease), background 0.3s var(--ease),
+    color 0.3s var(--ease);
+}
+.asta-cta-ghost:hover {
+  border-color: var(--lime-500) !important;
+  background: rgba(205, 216, 73, 0.1) !important;
+}
+/* arrow link that widens its gap on hover */
+.asta-arrow-link {
+  transition: gap 0.28s var(--ease);
+}
+.asta-arrow-link:hover {
+  gap: 11px;
+}
+
+/* ============================================================
+   REVEAL / ENTRANCE PRIMITIVES
+   Elements are visible by default; MotionRoot adds `asta-armed`
+   to <body> on mount so no-JS users never get stranded hidden.
+   ============================================================ */
+.asta-reveal,
+.asta-rv {
+  opacity: 1;
+  transform: none;
+}
+/* Each prototype tunes the reveal distance/scale for its own page:
+   46px/0.97 on most, 70px/0.94 on the homepage, 54px/0.96 on Solutions,
+   48px/none on Chemistry Solutions. Defaults below are the majority value;
+   a page opts out by setting the two vars on a wrapper (see .asta-page-*). */
+body.asta-armed .asta-reveal {
+  opacity: 0;
+  transform: translateY(var(--reveal-y, 46px)) scale(var(--reveal-scale, 0.97));
+}
+.asta-page-home {
+  --reveal-y: 70px;
+  --reveal-scale: 0.94;
+}
+.asta-page-solutions {
+  --reveal-y: 54px;
+  --reveal-scale: 0.96;
+}
+.asta-page-chemistry {
+  --reveal-y: 48px;
+  --reveal-scale: 1;
+}
+/* NOTE: the Company page defines 7 directional/flip reveal variants; they live
+   page-scoped in src/styles/company.css as .asta-co-rv-*. Deliberately not
+   duplicated here — a partial shared set would be worse than none. Any variant
+   added here must carry the body.asta-armed prefix to outrank the rule above. */
+/* !important is load-bearing, exactly as in the prototypes: pages tune their
+   own resting offset with an equal-specificity rule (e.g.
+   `body.asta-armed .asta-reveal.asta-q-risk-card`) in a stylesheet imported
+   AFTER this one. Without !important that rule wins even once `.is-in` lands,
+   and the content stays permanently invisible. */
+body.asta-armed .asta-reveal.is-in {
+  opacity: 1 !important;
+  transform: none !important;
+  transition: opacity 1.5s var(--ease),
+    transform 1.6s cubic-bezier(0.34, 1.3, 0.5, 1);
+}
+body.asta-armed .asta-rv {
+  opacity: 0;
+  transform: translateY(32px);
+}
+body.asta-armed .asta-rv.is-in {
+  opacity: 1;
+  transform: none;
+  transition: opacity 1.4s var(--ease), transform 1.4s var(--ease);
+}
+.asta-stagger > * {
+  opacity: 1;
+  transform: none;
+}
+body.asta-armed .asta-stagger > * {
+  opacity: 0;
+  transform: translateY(20px);
+}
+body.asta-armed .asta-stagger.is-in > * {
+  opacity: 1;
+  transform: none;
+  transition: opacity 1.2s var(--ease), transform 1.2s var(--ease);
+}
+.asta-stagger.is-in > *:nth-child(1) {
+  transition-delay: 0.08s;
+}
+.asta-stagger.is-in > *:nth-child(2) {
+  transition-delay: 0.24s;
+}
+.asta-stagger.is-in > *:nth-child(3) {
+  transition-delay: 0.4s;
+}
+.asta-stagger.is-in > *:nth-child(4) {
+  transition-delay: 0.56s;
+}
+.asta-stagger.is-in > *:nth-child(5) {
+  transition-delay: 0.72s;
+}
+.asta-wipe {
+  clip-path: inset(0 0 0 0);
+}
+body.asta-armed .asta-wipe {
+  clip-path: inset(0 100% 0 0);
+}
+body.asta-armed .asta-wipe.is-in {
+  clip-path: inset(0 0 0 0);
+  transition: clip-path 1s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+.asta-footline {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+body.asta-armed .asta-footline {
+  transform: scaleX(0);
+}
+body.asta-armed .asta-footline.is-in {
+  transform: scaleX(1);
+  transition: transform 1.1s var(--ease);
+}
+
+/* ============================================================
+   HERO
+   ============================================================ */
+@keyframes astaRise {
+  from {
+    opacity: 0;
+    transform: translateY(38px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+body.asta-armed .asta-hero-rise {
+  opacity: 0;
+  animation: astaRise 1.15s cubic-bezier(0.22, 0.61, 0.36, 1) both;
+}
+body.asta-armed .asta-hero-rise-1 {
+  animation-delay: 0.15s;
+}
+body.asta-armed .asta-hero-rise-2 {
+  animation-delay: 0.38s;
+}
+body.asta-armed .asta-hero-rise-3 {
+  animation-delay: 0.62s;
+}
+@keyframes astaHeroFloat {
+  0%,
+  100% {
+    transform: translateY(-50%) translateY(0);
+  }
+  50% {
+    transform: translateY(-50%) translateY(-18px);
+  }
+}
+.asta-hero-float {
+  animation: astaHeroFloat 7s ease-in-out infinite;
+}
+@keyframes astaGradientPan {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+.asta-hero-pan {
+  background-size: 180% 180%;
+  animation: astaGradientPan 22s ease-in-out infinite;
+}
+.asta-hero-slide {
+  grid-area: 1/1;
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.6s var(--ease), transform 0.6s var(--ease);
+  pointer-events: none;
+}
+.asta-hero-slide--active {
+  opacity: 1;
+  transform: none;
+  pointer-events: auto;
+}
+.asta-hero-arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  background: var(--gray-100);
+  transition: background 0.25s var(--ease);
+}
+.asta-hero-arrow:hover {
+  background: var(--green-600);
+}
+.asta-hero-arrow:hover svg {
+  color: #fff !important;
+}
+
+/* ============================================================
+   PRODUCT CARDS — lift, sheen, badge pop
+   ============================================================ */
+.asta-card {
+  position: relative;
+  transition: transform 0.5s cubic-bezier(0.34, 1.4, 0.5, 1),
+    box-shadow 0.5s var(--ease), border-color 0.5s var(--ease);
+}
+.asta-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -70%;
+  width: 45%;
+  height: 100%;
+  z-index: 6;
+  background: linear-gradient(
+    100deg,
+    transparent,
+    rgba(255, 255, 255, 0.42),
+    transparent
+  );
+  transform: skewX(-18deg);
+  opacity: 0;
+  pointer-events: none;
+}
+.asta-card:hover::before {
+  animation: astaSheen 0.9s ease;
+}
+@keyframes astaSheen {
+  0% {
+    left: -70%;
+    opacity: 0;
+  }
+  18% {
+    opacity: 1;
+  }
+  100% {
+    left: 130%;
+    opacity: 0;
+  }
+}
+.asta-card:hover {
+  transform: translateY(-22px) scale(1.025);
+  border-color: var(--green-300);
+  box-shadow: 0 44px 90px rgba(17, 48, 43, 0.3);
+}
+.asta-card-media {
+  transition: transform 1s var(--ease);
+}
+.asta-card:hover .asta-card-media {
+  transform: scale(1.16);
+}
+.asta-card-badge {
+  transition: transform 0.55s cubic-bezier(0.34, 1.56, 0.5, 1),
+    box-shadow 0.5s var(--ease);
+}
+.asta-card:hover .asta-card-badge {
+  transform: scale(1.28) rotate(-14deg) translateY(-4px);
+  box-shadow: 0 18px 34px rgba(17, 48, 43, 0.4);
+}
+@keyframes astaBadgeBob {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+.asta-card:not(:hover) .asta-card-badge {
+  animation: astaBadgeBob 4.5s ease-in-out infinite;
+}
+.asta-card-accent {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 5px;
+  background: linear-gradient(90deg, var(--green-600), var(--lime-500));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.6s var(--ease);
+  z-index: 3;
+  border-radius: 16px 16px 0 0;
+}
+.asta-card:hover .asta-card-accent {
+  transform: scaleX(1);
+}
+/* NOTE: the prototype also set `color: var(--green-600)` on hover here, but the
+   global `h3 { color: #15352f !important }` above nullified it, so the heading
+   never actually changed colour. Left out to match the rendered design. */
+
+/* ============================================================
+   CERTIFICATION MARQUEE
+   ============================================================ */
+@keyframes astaMarquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+.asta-cert-track {
+  animation: astaMarquee 34s linear infinite;
+}
+.asta-cert-marquee:hover .asta-cert-track {
+  animation-play-state: paused;
+}
+.asta-cert-card {
+  transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease);
+}
+.asta-cert-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.28);
+}
+
+/* ============================================================
+   GLOBAL MAP — origin glow, pings, node pulses, light sweep
+   ============================================================ */
+@keyframes astaMapGlow {
+  0%,
+  100% {
+    opacity: 0.4;
+    transform: translate(-50%, -50%) scale(0.85);
+  }
+  50% {
+    opacity: 0.95;
+    transform: translate(-50%, -50%) scale(1.2);
+  }
+}
+@keyframes astaMapPing {
+  0% {
+    opacity: 0.75;
+    transform: translate(-50%, -50%) scale(0.15);
+  }
+  80% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+.asta-map-glow {
+  animation: astaMapGlow 3.4s ease-in-out infinite;
+}
+.asta-map-ping {
+  animation: astaMapPing 3.6s cubic-bezier(0.16, 0.7, 0.3, 1) infinite;
+}
+.asta-map-ping.p2 {
+  animation-delay: 1.2s;
+}
+.asta-map-ping.p3 {
+  animation-delay: 2.4s;
+}
+@keyframes astaMapKen {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+.asta-map-img {
+  animation: astaMapKen 26s ease-in-out infinite;
+  transform-origin: 68% 54%;
+}
+@keyframes astaMapSweep {
+  0% {
+    transform: translateX(-140%) skewX(-18deg);
+    opacity: 0;
+  }
+  12% {
+    opacity: 0.7;
+  }
+  30% {
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(160%) skewX(-18deg);
+    opacity: 0;
+  }
+}
+.asta-map-sweep {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 38%;
+  height: 100%;
+  pointer-events: none;
+  mix-blend-mode: screen;
+  background: linear-gradient(
+    105deg,
+    transparent,
+    rgba(205, 216, 73, 0.2) 45%,
+    rgba(220, 245, 140, 0.42) 50%,
+    rgba(205, 216, 73, 0.2) 55%,
+    transparent
+  );
+  animation: astaMapSweep 7.5s cubic-bezier(0.5, 0, 0.2, 1) infinite;
+}
+@keyframes astaMapNode {
+  0% {
+    transform: translate(-50%, -50%) scale(0.4);
+    opacity: 0;
+  }
+  12% {
+    opacity: 1;
+  }
+  40% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0.95;
+  }
+  70%,
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1.9);
+  }
+}
+@keyframes astaMapDot {
+  0%,
+  100% {
+    opacity: 0.55;
+    transform: translate(-50%, -50%) scale(0.8);
+  }
+  50% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.15);
+  }
+}
+.asta-map-node {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  pointer-events: none;
+}
+.asta-map-node::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #eaff9a, #a3e635);
+  box-shadow: 0 0 8px rgba(163, 230, 53, 0.9);
+  transform: translate(-50%, -50%);
+  animation: astaMapDot 3s ease-in-out infinite;
+}
+.asta-map-node::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(163, 230, 53, 0.75);
+  transform: translate(-50%, -50%);
+  animation: astaMapNode 3.6s cubic-bezier(0.16, 0.7, 0.3, 1) infinite;
+}
+.asta-map-reveal {
+  clip-path: inset(0 100% 0 0);
+  opacity: 0;
+  transition: clip-path 1.6s cubic-bezier(0.22, 0.61, 0.36, 1),
+    opacity 0.6s ease;
+}
+.asta-rv.is-in .asta-map-reveal,
+.is-in.asta-map-reveal {
+  clip-path: inset(0 0 0 0);
+  opacity: 1;
+}
+.asta-mapframe {
+  transition: box-shadow 0.45s var(--ease);
+}
+.asta-mapframe:hover {
+  box-shadow: 0 28px 60px rgba(17, 48, 43, 0.18);
+}
+.asta-mapframe .asta-mapimg {
+  transition: transform 0.7s var(--ease);
+}
+.asta-mapframe:hover .asta-mapimg {
+  transform: scale(1.05);
+}
+
+/* ============================================================
+   "WHY ASTA" CARDS — 3D staggered entrance + sheen
+   ============================================================ */
+/* NOTE ON ENTRANCE: these cards carry `asta-reveal asta-why-card` together,
+   and the `body.asta-armed .asta-reveal[.is-in]` rules outrank anything
+   `.asta-why-card` declares. So the entrance below is driven entirely by
+   .asta-reveal — the prototype's rotateX(12deg) pop never rendered, and
+   neither did the hover lift (`transform: none` from `.is-in` wins over
+   `.asta-why-card:hover`). Reproduced as rendered, not as authored. */
+.asta-why-card {
+  transition: transform 0.5s cubic-bezier(0.34, 1.28, 0.5, 1),
+    box-shadow 0.5s var(--ease), border-color 0.5s var(--ease);
+  transform-style: preserve-3d;
+  position: relative;
+}
+.asta-why-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -120%;
+  width: 60%;
+  height: 100%;
+  z-index: 3;
+  pointer-events: none;
+  background: linear-gradient(
+    105deg,
+    transparent 0,
+    rgba(255, 255, 255, 0) 30%,
+    rgba(255, 255, 255, 0.55) 50%,
+    rgba(255, 255, 255, 0) 70%,
+    transparent 100%
+  );
+  transition: left 0.8s var(--ease);
+}
+.asta-why-card:hover::before {
+  left: 130%;
+}
+/* The `transform` here loses to `.asta-reveal.is-in`'s `transform: none`;
+   the border and shadow still land. Matches the prototype. */
+.asta-why-card:hover {
+  transform: translateY(-12px) scale(1.025);
+  border-color: var(--green-400);
+  box-shadow: 0 28px 60px rgba(17, 48, 43, 0.22);
+}
+.asta-why-media {
+  transition: transform 1.2s cubic-bezier(0.22, 0.61, 0.36, 1),
+    filter 0.5s var(--ease);
+}
+.asta-why-card:hover .asta-why-media {
+  transform: scale(1.12);
+}
+.asta-why-ico {
+  transition: transform 0.5s cubic-bezier(0.34, 1.5, 0.5, 1),
+    background 0.4s var(--ease), box-shadow 0.4s var(--ease);
+}
+.asta-why-card:hover .asta-why-ico {
+  transform: scale(1.18) rotate(-10deg);
+  background: var(--green-700);
+  box-shadow: 0 0 0 6px rgba(205, 216, 73, 0.22);
+}
+.asta-why-card:hover .asta-why-ico svg {
+  color: #fff;
+}
+.asta-why-card h3 {
+  transition: color 0.3s var(--ease), transform 0.3s var(--ease);
+}
+/* The prototype's `color: var(--green-700)` here was nullified by the global
+   h3 !important colour; only the nudge actually rendered. */
+.asta-why-card:hover h3 {
+  transform: translateX(4px);
+}
+/* Inert in the prototype too: the global `p { line-height: 1.6 !important }`
+   wins over this, so these paragraphs render at 1.6. */
+.asta-why-card p {
+  line-height: 1.7;
+}
+.asta-why-grid .asta-why-card:nth-child(1).is-in {
+  transition-delay: 0.05s;
+}
+.asta-why-grid .asta-why-card:nth-child(2).is-in {
+  transition-delay: 0.18s;
+}
+.asta-why-grid .asta-why-card:nth-child(3).is-in {
+  transition-delay: 0.31s;
+}
+.asta-why-grid .asta-why-card:nth-child(4).is-in {
+  transition-delay: 0.44s;
+}
+.asta-why-card.is-in .asta-why-ico {
+  animation: astaWhyIcoPop 0.7s cubic-bezier(0.34, 1.56, 0.5, 1) both;
+}
+.asta-why-grid .asta-why-card:nth-child(1).is-in .asta-why-ico {
+  animation-delay: 0.35s;
+}
+.asta-why-grid .asta-why-card:nth-child(2).is-in .asta-why-ico {
+  animation-delay: 0.48s;
+}
+.asta-why-grid .asta-why-card:nth-child(3).is-in .asta-why-ico {
+  animation-delay: 0.61s;
+}
+.asta-why-grid .asta-why-card:nth-child(4).is-in .asta-why-ico {
+  animation-delay: 0.74s;
+}
+@keyframes astaWhyIcoPop {
+  0% {
+    transform: scale(0.3) rotate(-30deg);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.15) rotate(6deg);
+  }
+  100% {
+    transform: scale(1) rotate(0);
+    opacity: 1;
+  }
+}
+
+/* ============================================================
+   SUSTAINABILITY ITEMS
+   ============================================================ */
+.asta-sus-item svg {
+  transition: color 0.3s var(--ease), transform 0.3s var(--ease);
+}
+.asta-sus-item .asta-sus-media {
+  transition: transform 0.45s var(--ease), box-shadow 0.45s var(--ease);
+  border-radius: 16px;
+  box-shadow: 0 0 0 1px var(--gray-200), 0 4px 12px rgba(17, 48, 43, 0.06);
+}
+.asta-sus-item:hover .asta-sus-media {
+  transform: translateY(-8px) scale(1.07);
+  box-shadow: 0 0 0 1px var(--green-300), 0 16px 34px rgba(17, 48, 43, 0.2);
+}
+.asta-sus-item:hover .asta-sus-label {
+  color: var(--green-800);
+}
+.asta-sus-item .asta-sus-label {
+  transition: color 0.3s var(--ease);
+}
+.asta-sus-ico {
+  transition: transform 0.3s var(--ease), background 0.3s var(--ease);
+}
+.asta-sus-item:hover .asta-sus-ico {
+  transform: scale(1.08);
+  background: rgba(205, 216, 73, 0.18);
+}
+.asta-sus-item:hover svg {
+  color: var(--green-700);
+  transform: scale(1.12);
+}
+
+/* ============================================================
+   CTA BAND
+   ============================================================ */
+@keyframes astaDrift {
+  0% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  50% {
+    transform: translate(26px, -20px) rotate(6deg);
+  }
+  100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+}
+.asta-cta-drift {
+  animation: astaDrift 30s ease-in-out infinite;
+}
+
+/* ============================================================
+   SCROLL CUE
+   ============================================================ */
+@keyframes astaSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes astaBob {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(3px);
+  }
+}
+.asta-scroll-arrow {
+  animation: astaBob 1.6s ease-in-out infinite;
+}
+.asta-scroll-btn:hover .asta-scroll-ring {
+  border-color: var(--green-600);
+  background: var(--green-050);
+}
+.asta-scroll-btn:hover {
+  color: var(--green-700);
+}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.asta-nf-link {
+  color: rgba(23, 63, 44, 0.72);
+  text-decoration: none;
+  font-size: 13.5px;
+  transition: color 0.22s var(--ease), transform 0.22s var(--ease);
+}
+.asta-nf-link:link,
+.asta-nf-link:visited {
+  color: rgba(23, 63, 44, 0.72);
+}
+.asta-nf-link:hover {
+  color: var(--green-900);
+  transform: translateX(3px);
+}
+.asta-foot-logo-light {
+  display: none;
+}
+.asta-foot-link {
+  position: relative;
+  color: #cfe0d9;
+  text-decoration: none;
+  font-size: 14.5px;
+  transition: color 0.25s var(--ease);
+}
+.asta-foot-link:hover {
+  color: #fff;
+}
+.asta-foot-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 100%;
+  height: 1px;
+  background: var(--lime-500);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s var(--ease);
+}
+.asta-foot-link:hover::after {
+  transform: scaleX(1);
+}
+.asta-foot-social {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  border: 1px solid #d3d8cf;
+  transition: transform 0.25s var(--ease), border-color 0.25s var(--ease),
+    background 0.25s var(--ease);
+}
+.asta-foot-social:hover {
+  border-color: var(--green-600);
+  background: var(--green-050);
+  transform: scale(1.08);
+}
+.asta-foot-head {
+  font-size: 18px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.02em !important;
+}
+/* Needs !important to beat the global p rule — as in the prototype. */
+.asta-foot-brand p {
+  font-size: 13px !important;
+  line-height: 1.55 !important;
+}
+
+@media (max-width: 1080px) {
+  .asta-foot-curve {
+    display: none !important;
+  }
+  .asta-foot-inner {
+    grid-template-columns: 1fr !important;
+    row-gap: 40px !important;
+    gap: 40px !important;
+  }
+  .asta-foot-cols {
+    grid-template-columns: 1fr 1fr 1fr !important;
+    row-gap: 34px !important;
+  }
+  .asta-foot-contact {
+    border-left: none !important;
+    padding-left: 0 !important;
+  }
+  .asta-foot-logo-dark {
+    display: none !important;
+  }
+  .asta-foot-logo-light {
+    display: block !important;
+  }
+  .asta-foot-tagline {
+    color: #8fb0a8 !important;
+  }
+  .asta-foot-brand {
+    padding: 0 !important;
+  }
+}
+@media (max-width: 680px) {
+  .asta-foot-cols {
+    grid-template-columns: 1fr 1fr !important;
+  }
+}
+@media (max-width: 430px) {
+  .asta-foot-cols {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* ============================================================
+   RESPONSIVE SECTION GRIDS
+   ============================================================ */
+@media (max-width: 1080px) {
+  .asta-quality-grid {
+    grid-template-columns: repeat(3, 1fr) !important;
+    row-gap: 38px !important;
+  }
+  .asta-quality-grid > * {
+    border-left: none !important;
+  }
+  .asta-footer-grid {
+    grid-template-columns: 1.4fr 1fr 1fr !important;
+    row-gap: 36px !important;
+  }
+}
+@media (max-width: 980px) {
+  .asta-why-grid {
+    grid-template-columns: 1fr 1fr !important;
+  }
+}
+@media (max-width: 900px) {
+  .asta-hero-grid,
+  .asta-mfg-grid,
+  .asta-global-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .asta-cards {
+    grid-template-columns: 1fr !important;
+  }
+  .asta-sustain-items {
+    grid-template-columns: 1fr 1fr 1fr !important;
+  }
+  .asta-footer-grid {
+    grid-template-columns: 1fr 1fr !important;
+  }
+}
+@media (max-width: 620px) {
+  .asta-quality-grid {
+    grid-template-columns: 1fr 1fr !important;
+  }
+  .asta-sustain-items {
+    grid-template-columns: 1fr 1fr !important;
+  }
+  .asta-footer-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+@media (max-width: 560px) {
+  .asta-why-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* ============================================================
+   REDUCED MOTION — hard opt-out, matching the prototype
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  .asta-map-sweep,
+  .asta-map-node,
+  .asta-map-img,
+  .asta-map-glow,
+  .asta-map-ping {
+    animation: none !important;
+    transition: none !important;
+  }
+  .asta-map-node {
+    opacity: 0.8 !important;
+  }
+  .asta-map-ping {
+    opacity: 0 !important;
+  }
+  body.asta-armed .asta-hero-rise {
+    opacity: 1 !important;
+  }
+  body.asta-armed .asta-reveal,
+  body.asta-armed .asta-rv,
+  body.asta-armed .asta-stagger > *,
+  .asta-why-card {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  body.asta-armed .asta-wipe {
+    clip-path: inset(0 0 0 0) !important;
+  }
+  body.asta-armed .asta-footline {
+    transform: scaleX(1) !important;
+  }
+  .asta-map-reveal {
+    clip-path: inset(0 0 0 0) !important;
+    opacity: 1 !important;
+  }
+}
