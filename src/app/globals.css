@@ -519,15 +519,20 @@ body.asta-armed .asta-hero-rise-3 {
   background-size: 180% 180%;
   animation: astaGradientPan 22s ease-in-out infinite;
 }
-/* Homepage hero fills the whole viewport with the 88px sticky header floating
-   over its top: pull the section up under the header, then size it to a full
-   screen. svh keeps it stable on mobile so browser chrome never clips it.
-   Content is vertically centred, so it clears the overlapping header. */
-.asta-home-hero {
+/* Any hero fills the whole viewport with the 88px sticky header floating over
+   its top: pull the section up under the header, then size it to a full screen.
+   svh keeps it stable on mobile so browser chrome never clips it. Content is
+   vertically centred (flex), so it clears the overlapping header. Absolutely
+   positioned backdrops (Ken Burns / video / float art) are out of flow and
+   just stretch to the taller section. */
+.asta-fit-hero {
   margin-top: -88px;
   min-height: 100vh;
   min-height: 100svh;
   padding-top: 88px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .asta-hero-slide {

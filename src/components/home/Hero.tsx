@@ -4,7 +4,7 @@ export default function Hero() {
   return (
     <section
       id="top"
-      className="asta-hero-pan asta-home-hero"
+      className="asta-hero-pan asta-fit-hero"
       style={{
         position: "relative",
         overflow: "hidden",

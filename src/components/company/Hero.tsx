@@ -3,7 +3,7 @@ import Image from "next/image";
 export default function Hero() {
   return (
     <section
-      className="asta-hero-pan"
+      className="asta-hero-pan asta-fit-hero"
       style={{
         position: "relative",
         overflow: "hidden",

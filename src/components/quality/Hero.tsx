@@ -13,7 +13,10 @@ import Image from "next/image";
  */
 export default function Hero() {
   return (
-    <section style={{ position: "relative", overflow: "hidden", background: "#fff" }}>
+    <section
+      className="asta-fit-hero"
+      style={{ position: "relative", overflow: "hidden", background: "#fff" }}
+    >
       <Image
         src="/assets/quality-hero-bg.png"
         alt=""

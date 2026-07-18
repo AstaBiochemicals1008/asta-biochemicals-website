@@ -1,6 +1,7 @@
 export default function Hero() {
   return (
     <section
+      className="asta-fit-hero"
       style={{ position: "relative", overflow: "hidden", background: "#ffffff" }}
     >
       {/* Ken-Burns background. Stays a CSS background (not next/image) because

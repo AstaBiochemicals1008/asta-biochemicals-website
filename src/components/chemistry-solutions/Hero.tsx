@@ -1,6 +1,7 @@
 export default function Hero() {
   return (
     <section
+      className="asta-fit-hero"
       style={{ position: "relative", overflow: "hidden", background: "#fff" }}
     >
       <div
