@@ -155,13 +155,20 @@ export default function GetInTouch() {
               style={{ ...cardStyle, flex: 1 }}
             >
               <CardHead icon={<Mail style={iconStyle} />} title="Email" />
-              <div style={bodyStyle}>
+              <div style={{ ...bodyStyle, display: "flex", flexDirection: "column", gap: 4 }}>
                 <a
                   className="asta-nf-link"
                   href="mailto:sales@astabiochemicals.com"
-                  style={linkStyle}
+                  style={{ ...linkStyle, display: "block" }}
                 >
                   sales@astabiochemicals.com
+                </a>
+                <a
+                  className="asta-nf-link"
+                  href="mailto:enquiries@astabiochemicals.com"
+                  style={{ ...linkStyle, display: "block" }}
+                >
+                  enquiries@astabiochemicals.com
                 </a>
               </div>
             </div>
