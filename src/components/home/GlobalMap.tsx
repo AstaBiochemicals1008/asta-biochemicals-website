@@ -1,31 +1,11 @@
 import Image from "next/image";
 
-/** Trade-route nodes, positioned as percentages over the map artwork.
-   `top` values are scaled to the strip-cropped artwork (1536×798); `left`
-   is unchanged since the width is the same. */
-const NODES = [
-  { left: "17%", top: "64.2%", delay: "0.2s" },
-  { left: "42.5%", top: "34.6%", delay: "0.6s" },
-  { left: "52.5%", top: "41.1%", delay: "1s" },
-  { left: "56%", top: "48.1%", delay: "1.4s" },
-  { left: "60%", top: "56.5%", delay: "1.8s" },
-  { left: "60%", top: "71.9%", delay: "2.2s" },
-  { left: "49%", top: "95%", delay: "2.6s" },
-  { left: "85%", top: "59%", delay: "3s" },
-];
-
-const pingStyle: React.CSSProperties = {
-  position: "absolute",
-  left: "69%",
-  top: "70.6%",
-  width: "34%",
-  height: "61.6%",
-  borderRadius: "50%",
-  border: "2px solid rgba(163,230,53,0.55)",
-  mixBlendMode: "screen",
-  pointerEvents: "none",
-};
-
+/**
+ * Global-presence map. The artwork (global-map-v2.png) already has the heading,
+ * trade-route arcs, country labels, node dots and India glow baked in, so this
+ * only frames it with the scroll wipe-in, a subtle Ken Burns drift and a light
+ * sweep — no CSS node/glow overlays (they would duplicate the baked ones).
+ */
 export default function GlobalMap() {
   return (
     <section
@@ -50,56 +30,12 @@ export default function GlobalMap() {
             className="asta-map-img"
             src="/assets/global-map-v2.png"
             alt="ASTA global presence — connecting science from India to markets worldwide"
-            width={1536}
-            height={798}
+            width={1553}
+            height={1013}
             sizes="(max-width: 1320px) 100vw, 1320px"
             style={{ display: "block", width: "100%", height: "auto" }}
           />
-
           <div aria-hidden="true" className="asta-map-sweep" />
-
-          {NODES.map((node) => (
-            <span
-              key={`${node.left}-${node.top}`}
-              aria-hidden="true"
-              className="asta-map-node"
-              style={{
-                left: node.left,
-                top: node.top,
-                animationDelay: node.delay,
-              }}
-            />
-          ))}
-
-          {/* Origin glow over India. */}
-          <div
-            aria-hidden="true"
-            className="asta-map-glow"
-            style={{
-              position: "absolute",
-              left: "69%",
-              top: "70.6%",
-              width: "26%",
-              height: "48.8%",
-              borderRadius: "50%",
-              background:
-                "radial-gradient(circle,rgba(190,242,100,0.85) 0%,rgba(163,230,53,0.35) 40%,rgba(163,230,53,0) 70%)",
-              mixBlendMode: "screen",
-              pointerEvents: "none",
-              filter: "blur(6px)",
-            }}
-          />
-          <span aria-hidden="true" className="asta-map-ping" style={pingStyle} />
-          <span
-            aria-hidden="true"
-            className="asta-map-ping p2"
-            style={pingStyle}
-          />
-          <span
-            aria-hidden="true"
-            className="asta-map-ping p3"
-            style={pingStyle}
-          />
         </div>
       </div>
     </section>
