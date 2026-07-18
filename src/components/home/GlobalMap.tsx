@@ -1,23 +1,25 @@
 import Image from "next/image";
 
-/** Trade-route nodes, positioned as percentages over the map artwork. */
+/** Trade-route nodes, positioned as percentages over the map artwork.
+   `top` values are scaled to the strip-cropped artwork (1536×798); `left`
+   is unchanged since the width is the same. */
 const NODES = [
-  { left: "17%", top: "50%", delay: "0.2s" },
-  { left: "42.5%", top: "27%", delay: "0.6s" },
-  { left: "52.5%", top: "32%", delay: "1s" },
-  { left: "56%", top: "37.5%", delay: "1.4s" },
-  { left: "60%", top: "44%", delay: "1.8s" },
-  { left: "60%", top: "56%", delay: "2.2s" },
-  { left: "49%", top: "74%", delay: "2.6s" },
-  { left: "85%", top: "46%", delay: "3s" },
+  { left: "17%", top: "64.2%", delay: "0.2s" },
+  { left: "42.5%", top: "34.6%", delay: "0.6s" },
+  { left: "52.5%", top: "41.1%", delay: "1s" },
+  { left: "56%", top: "48.1%", delay: "1.4s" },
+  { left: "60%", top: "56.5%", delay: "1.8s" },
+  { left: "60%", top: "71.9%", delay: "2.2s" },
+  { left: "49%", top: "95%", delay: "2.6s" },
+  { left: "85%", top: "59%", delay: "3s" },
 ];
 
 const pingStyle: React.CSSProperties = {
   position: "absolute",
   left: "69%",
-  top: "55%",
+  top: "70.6%",
   width: "34%",
-  height: "48%",
+  height: "61.6%",
   borderRadius: "50%",
   border: "2px solid rgba(163,230,53,0.55)",
   mixBlendMode: "screen",
@@ -49,7 +51,7 @@ export default function GlobalMap() {
             src="/assets/global-map-v2.png"
             alt="ASTA global presence — connecting science from India to markets worldwide"
             width={1536}
-            height={1024}
+            height={798}
             sizes="(max-width: 1320px) 100vw, 1320px"
             style={{ display: "block", width: "100%", height: "auto" }}
           />
@@ -76,9 +78,9 @@ export default function GlobalMap() {
             style={{
               position: "absolute",
               left: "69%",
-              top: "55%",
+              top: "70.6%",
               width: "26%",
-              height: "38%",
+              height: "48.8%",
               borderRadius: "50%",
               background:
                 "radial-gradient(circle,rgba(190,242,100,0.85) 0%,rgba(163,230,53,0.35) 40%,rgba(163,230,53,0) 70%)",
