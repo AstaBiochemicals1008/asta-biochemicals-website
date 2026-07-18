@@ -141,29 +141,6 @@ export default function SiteFooter() {
           <span style={{ fontSize: 12.5, color: "var(--green-800)" }}>
             © 2026 ASTA Biochemicals Pvt. Ltd. All rights reserved.
           </span>
-          <div
-            style={{
-              display: "flex",
-              gap: "14px 20px",
-              fontSize: 12.5,
-              alignItems: "center",
-              flexWrap: "wrap",
-            }}
-          >
-            {LEGAL_LINKS.map((item, i) => (
-              <span
-                key={item.label}
-                style={{ display: "inline-flex", alignItems: "center", gap: 20 }}
-              >
-                <Link className="asta-nf-link" href={item.href}>
-                  {item.label}
-                </Link>
-                {i < LEGAL_LINKS.length - 1 && (
-                  <span style={{ color: "rgba(23,63,44,0.35)" }}>|</span>
-                )}
-              </span>
-            ))}
-          </div>
         </div>
       </div>
     </footer>
