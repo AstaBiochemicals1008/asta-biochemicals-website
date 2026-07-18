@@ -158,10 +158,10 @@ export default function GetInTouch() {
               <div style={{ ...bodyStyle, display: "flex", flexDirection: "column", gap: 4 }}>
                 <a
                   className="asta-nf-link"
-                  href="mailto:sales@astabiochemicals.com"
+                  href="mailto:connect@astabiochemicals.com"
                   style={{ ...linkStyle, display: "block" }}
                 >
-                  sales@astabiochemicals.com
+                  connect@astabiochemicals.com
                 </a>
                 <a
                   className="asta-nf-link"
