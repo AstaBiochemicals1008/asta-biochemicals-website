@@ -24,8 +24,8 @@ const ITEMS: Item[] = [
     delay: "160",
   },
   {
-    src: "/assets/company-diff-3.png",
-    alt: "Scientist in lab",
+    src: "/assets/regulatory-pic.png",
+    alt: "Scientist pipetting samples in a laboratory",
     title: "Regulatory Mindset",
     body: "Supporting customer compliance and documentation requirements.",
     delay: "240",
