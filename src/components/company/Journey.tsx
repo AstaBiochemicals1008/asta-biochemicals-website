@@ -53,7 +53,8 @@ const NODES: Node[] = [
   { year: "2016", label: "Molecule Development", ink: "#6b8f2a", size: 210 },
   {
     year: "2017",
-    label: "Manufacturing Started (Small Scale)",
+    // Non-breaking space keeps "(Small Scale)" together on one line.
+    label: "Manufacturing Started (Small Scale)",
     ink: "#6b8f2a",
     size: 208,
   },
