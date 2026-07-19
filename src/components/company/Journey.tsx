@@ -61,7 +61,9 @@ const NODES: Node[] = [
   { year: "2019", label: "EU Office & Warehouse", ink: "#11302b", size: 203 },
   {
     year: "2021",
-    label: "ISO 9001:2015, ISO 14001:2015, ISO 45001:2018 Certification",
+    // Non-breaking spaces keep each "ISO xxxxx:yyyy" code on one line.
+    label:
+      "ISO 9001:2015, ISO 14001:2015, ISO 45001:2018 Certification",
     ink: "#11302b",
     size: 202,
   },
