@@ -255,6 +255,13 @@ p.asta-hero-rise-3 {
   color: var(--green-700);
   border-bottom-color: var(--lime-500);
 }
+/* Active (current-page) link: persistent lime underline + green, heavier
+   weight. !important is needed to beat the base .asta-navlink rules above. */
+.asta-navlink-active {
+  color: var(--green-700) !important;
+  border-bottom-color: var(--lime-500) !important;
+  font-weight: 600 !important;
+}
 
 .asta-dd {
   position: relative;

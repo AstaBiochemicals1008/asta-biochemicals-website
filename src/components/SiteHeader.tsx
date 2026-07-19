@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { ArrowRight, Menu } from "lucide-react";
 import { CONNECT_HREF, MAIN_NAV } from "@/lib/nav";
 
@@ -21,6 +22,9 @@ const navLinkStyle: React.CSSProperties = {
 
 export default function SiteHeader() {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const pathname = usePathname();
+  // All nav targets are top-level routes, so an exact match is the active page.
+  const isActive = (href: string) => pathname === href;
 
   return (
     <>
@@ -74,16 +78,20 @@ export default function SiteHeader() {
               gap: "clamp(20px,2vw,36px)",
             }}
           >
-            {MAIN_NAV.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className="asta-navlink"
-                style={navLinkStyle}
-              >
-                {item.label}
-              </Link>
-            ))}
+            {MAIN_NAV.map((item) => {
+              const active = isActive(item.href);
+              return (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className={`asta-navlink${active ? " asta-navlink-active" : ""}`}
+                  aria-current={active ? "page" : undefined}
+                  style={navLinkStyle}
+                >
+                  {item.label}
+                </Link>
+              );
+            })}
           </nav>
 
           <div
@@ -157,24 +165,36 @@ export default function SiteHeader() {
             padding: "8px clamp(18px,3vw,40px) 18px",
           }}
         >
-          {MAIN_NAV.map((item, i) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              onClick={() => setMobileOpen(false)}
-              style={{
-                // The prototype gives only the last item pure white.
-                color: i === MAIN_NAV.length - 1 ? "#fff" : "#eaf3f0",
-                textDecoration: "none",
-                fontSize: 15,
-                fontWeight: 500,
-                padding: "13px 0",
-                borderBottom: "1px solid rgba(255,255,255,0.08)",
-              }}
-            >
-              {item.label}
-            </Link>
-          ))}
+          {MAIN_NAV.map((item, i) => {
+            const active = isActive(item.href);
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                onClick={() => setMobileOpen(false)}
+                aria-current={active ? "page" : undefined}
+                style={{
+                  // Active row: lime accent + a lime left bar; otherwise the
+                  // prototype's scheme (only the last item pure white).
+                  color: active
+                    ? "var(--lime-400)"
+                    : i === MAIN_NAV.length - 1
+                      ? "#fff"
+                      : "#eaf3f0",
+                  fontWeight: active ? 700 : 500,
+                  borderLeft: active
+                    ? "3px solid var(--lime-500)"
+                    : "3px solid transparent",
+                  textDecoration: "none",
+                  fontSize: 15,
+                  padding: "13px 0 13px 12px",
+                  borderBottom: "1px solid rgba(255,255,255,0.08)",
+                }}
+              >
+                {item.label}
+              </Link>
+            );
+          })}
         </div>
       )}
     </>
