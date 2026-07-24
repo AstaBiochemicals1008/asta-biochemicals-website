@@ -4,6 +4,7 @@ import "./globals.css";
 import MotionRoot from "@/components/MotionRoot";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
+import CloudflareAnalytics from "@/components/CloudflareAnalytics";
 
 const manrope = Manrope({
   variable: "--font-manrope",
@@ -40,6 +41,7 @@ export default function RootLayout({
         <SiteHeader />
         <main>{children}</main>
         <SiteFooter />
+        <CloudflareAnalytics />
       </body>
     </html>
   );
