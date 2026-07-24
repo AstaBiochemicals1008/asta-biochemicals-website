@@ -6,6 +6,7 @@ import QualityJourney from "@/components/quality/QualityJourney";
 import RiskManagement from "@/components/quality/RiskManagement";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/quality" },
   title: "Quality & Compliance",
   description:
     "Integrated quality management, global compliance and end-to-end traceability to deliver consistent value to our partners worldwide.",

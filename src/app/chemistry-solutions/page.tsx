@@ -8,6 +8,7 @@ import SpecialtyRow from "@/components/chemistry-solutions/SpecialtyRow";
 import Industries from "@/components/chemistry-solutions/Industries";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/chemistry-solutions" },
   title: "Discovery Chemistry",
   description:
     "From discovery through process development and scale-up, ASTA partners with pharmaceutical, biotechnology, fragrance and specialty chemical industries to deliver excellence at every stage.",

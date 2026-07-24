@@ -8,6 +8,7 @@ import "@/styles/personal-care.css";
 
 export const metadata: Metadata = {
   // The root layout applies a `%s | ASTA Biochemicals` template.
+  alternates: { canonical: "/personal-care" },
   title: "Personal Care Ingredients",
   description:
     "Premium ingredients that empower innovation in hair care, skin care, personal hygiene and cosmetic formulations.",

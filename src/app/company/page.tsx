@@ -10,6 +10,7 @@ import WhoWeAre from "@/components/company/WhoWeAre";
 import "@/styles/company.css";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/company" },
   title: "Company",
   description:
     "ASTA Biochemicals is an ISO-certified Indian company serving international customers through specialty chemical manufacturing and biopharmaceutical supply — our vision, values, journey and commitment to sustainability.",
