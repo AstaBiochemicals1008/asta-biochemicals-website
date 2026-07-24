@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import { Manrope } from "next/font/google";
 import "./globals.css";
+import { Analytics } from "@vercel/analytics/next";
 import MotionRoot from "@/components/MotionRoot";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
-import CloudflareAnalytics from "@/components/CloudflareAnalytics";
 
 const manrope = Manrope({
   variable: "--font-manrope",
@@ -41,7 +41,7 @@ export default function RootLayout({
         <SiteHeader />
         <main>{children}</main>
         <SiteFooter />
-        <CloudflareAnalytics />
+        <Analytics />
       </body>
     </html>
   );
